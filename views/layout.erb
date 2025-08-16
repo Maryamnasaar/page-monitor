@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <script src="/performance.js"></script>
+    <style>
+      body {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+        color: #333;
+        font-family: Arial, sans-serif;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        border-radius: 8px;
+      }
+      header {
+        margin-bottom: 2rem;
+        text-align: center;
+      }
+      header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        color: #2c3e50;
+      }
+      nav a {
+        margin-right: 1rem;
+        text-decoration: none;
+        color: #007BFF;
+        font-weight: 600;
+        transition: color 0.3s ease;
+      }
+      nav a:hover {
+        color: #0056b3;
+        text-decoration: underline;
+      }
+      footer p {
+        text-align: center;
+        color: #888;
+        font-size: 0.9rem;
+        margin-top: 3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Welcome to My Website</h1>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+      </nav>
+    </header>
+    <main>
+      <%== yield %>
+    </main>
+    <footer>
+      <p>© 2025 My Website. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
