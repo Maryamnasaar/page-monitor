@@ -21,7 +21,7 @@ class App
         db.results_as_hash = true
 
         db.execute(
-          "INSERT INTO perf_logs_new (page_url, page_size, dom_ready_time, full_load_time)
+          "INSERT INTO perf_logs (page_url, page_size, dom_ready_time, full_load_time)
            VALUES (?, ?, ?, ?)
            ON CONFLICT(page_url) DO UPDATE SET
              page_size      = excluded.page_size,
@@ -35,7 +35,7 @@ class App
       end
     end
 
-    r.on 'perf_logs_new' do
+    r.on 'perf_logs' do
       r.get do
         url = r.params['url']
 
@@ -44,9 +44,9 @@ class App
 
         logs =
           if url && !url.strip.empty?
-            db.execute("SELECT * FROM perf_logs_new WHERE page_url = ?", [url])
+            db.execute("SELECT * FROM perf_logs WHERE page_url = ?", [url])
           else
-            db.execute("SELECT * FROM perf_logs_new")
+            db.execute("SELECT * FROM perf_logs")
           end
 
         db.close
