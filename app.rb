@@ -9,6 +9,10 @@ class App < Roda
   plugin :public
   plugin :json
 
+  # load all route files
+  require_relative 'routes/pages'
+  require_relative 'routes/perf'
+
   Unreloader.require('routes') {}
 
   route do |r|

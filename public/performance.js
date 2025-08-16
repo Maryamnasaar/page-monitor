@@ -12,7 +12,7 @@ window.addEventListener('load', () => {
   console.log(navigation);
 
   // Send immediately after load (optional)
-  fetch('/mazo/etghazo', {
+  fetch('/perf/page', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -38,7 +38,7 @@ window.addEventListener('load', () => {
         })],
         { type: 'application/json' }
       );
-      navigator.sendBeacon('/mazo/etghazo', payload);
+      navigator.sendBeacon('/perf/page', payload);
     }
   });
 });
