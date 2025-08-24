@@ -25,6 +25,7 @@ class App
       # POST: save performance data
       r.post do
         data = JSON.parse(r.body.read)
+        time = data["time"]
         page_url  = data["pageUrl"]
         page_size = data["pageSize"]
         dom_ready = data["domReady"]
@@ -34,19 +35,14 @@ class App
         db.results_as_hash = true
 
         db.execute(
-          "INSERT INTO perf_logs (page_url, page_size, dom_ready_time, full_load_time)
-           VALUES (?, ?, ?, ?)
-           ON CONFLICT(page_url) DO UPDATE SET
-             page_size      = excluded.page_size,
-             dom_ready_time = excluded.dom_ready_time,
-             full_load_time = excluded.full_load_time",
-          [page_url, page_size, dom_ready, full_load]
+          "INSERT INTO perf_logs (time,page_url, page_size, dom_ready_time, full_load_time)
+           VALUES (?, ?, ?, ?, ?)",
+          [time, page_url, page_size, dom_ready, full_load]
         )
 
         db.close
         { status: "ok", message: "Performance data saved" }.to_json
       end
-
     end
   end
 end
